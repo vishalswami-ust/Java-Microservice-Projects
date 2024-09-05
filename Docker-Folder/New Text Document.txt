@@ -1,0 +1,21 @@
+FROM ubuntu:latest
+RUN apt update
+RUN apt install default-jdk -y
+COPY . .
+RUN javac Hello.java
+CMD ["java", "Hello"]
+
+
+------------------------------------
+
+FROM ubuntu:latest
+RUN apt update
+RUN apt install apache2 -y
+RUN apt install apache2-utils -y
+RUN apt clean
+COPY index.html /var/www/html/
+EXPOSE 80
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+
+
+------------------------------------
